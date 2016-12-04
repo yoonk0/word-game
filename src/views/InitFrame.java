@@ -17,6 +17,8 @@ public class InitFrame extends JFrame {
 	public static Lesson lesson;
 	public static int lessonNum; 
 	public static CongratulationsPanel congrats;
+//	public static ReviewPanel review; 
+//	public static gamePanel game; 
 
 
 	public InitFrame() throws Exception{
@@ -45,9 +47,11 @@ public class InitFrame extends JFrame {
 		image = ImageIO.read(new File("images/card/lesson/cardwith.jpg"));
 		lesson = new Lesson(image);
 		image = ImageIO.read(new File("images/end/finishLesson/lessonfinished.jpg"));
+		congrats = new CongratulationsPanel(image);	
 		this.add(main, "main");
 		this.add(lessonMenu, "lessonMenu");
 		this.add(lesson, "lesson");
+		this.add(congrats, "congrats");
 	}
 
 //	
