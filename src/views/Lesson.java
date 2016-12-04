@@ -13,9 +13,11 @@ public class Lesson extends JPanel {
 	JButton prev, reviewList, next;
 	JPanel top, bottom, center;
 	Image backgroundImage;
-	JLabel word, image;
-	ArrayList<String> words; 
-	int count;
+	static JLabel word;
+	static JLabel image;
+	static ArrayList<String> words; 
+	ReviewList review; 
+	static int count;
 	BorderLayout layout;
 	public static int lessonNum =1;
 	
@@ -26,6 +28,7 @@ public class Lesson extends JPanel {
 		addLabels();
 		mouseControl();
 		setLayout(null);
+		review = new ReviewList("wordLists/reviewlist.txt");	
 	}
 	
 	
@@ -34,24 +37,32 @@ public class Lesson extends JPanel {
 		image = getImage("previous");
 		prev = new JButton(new ImageIcon(image));
 		setButton(prev);
-		prev.setBounds(150, 860, 250, 80);
-		
-		image = getImage("add");
-		reviewList = new JButton(new ImageIcon(image));
-		setButton(reviewList);
-		reviewList.setBounds(610, 860, 250, 80);
+		prev.setBounds(150, 860, 350, 80);
+		if(count == 0) prev.setVisible(false);
 		
 		image = getImage("next");
 		next = new JButton(new ImageIcon(image));
 		setButton(next);
-		next.setBounds(920, 860, 250, 80);
+		next.setBounds(920, 860, 350, 80);
+		
+		if (lessonNum != 0) {							//if 0, review list
+			image = getImage("add");
+		} else { 
+			image = getImage("deletefromlist");
+		}
+		reviewList = new JButton(new ImageIcon(image));
+		setButton(reviewList);
+		reviewList.setBounds(610, 860, 350, 80);
 		
 	}
 	
-	private void initLabels() throws Exception{
-		
-		
-		String wordSrc = "wordLists/lesson"+lessonNum+".txt";
+	public static void initLabels() throws Exception{
+		String wordSrc;
+		if(lessonNum == 0) {
+			wordSrc = "wordLists/reviewlist.txt";
+		}else {
+			wordSrc = "wordLists/lesson"+lessonNum+".txt";
+		}
 		words = new ArrayList<>();
 		count = 0;
 		
@@ -66,7 +77,6 @@ public class Lesson extends JPanel {
 		if(words.size() > 0){
 			Collections.shuffle(words);
 			setWordAndImage(words.get(count));
-			//rl = new ReviewList("words/reviewlist" + lessonNum + ".txt");	
 		}
 		
 	}
@@ -80,7 +90,7 @@ public class Lesson extends JPanel {
 		image.setBounds(450, 280, 400, 400);
 	}
 
-	private void setWordAndImage(String currentWord) {
+	private static void setWordAndImage(String currentWord) {
 		if (word == null) {
 			word = new JLabel(currentWord);
 		} else {
@@ -103,7 +113,7 @@ public class Lesson extends JPanel {
 	
 	private Image getImage (String imageName) throws IOException {
 		Image image = ImageIO.read(new File("images/card/lesson/"+imageName+".png"));
-		Image scaledImage= image.getScaledInstance( 250, 80,  java.awt.Image.SCALE_SMOOTH ) ;
+		Image scaledImage= image.getScaledInstance( 350, 80,  java.awt.Image.SCALE_SMOOTH ) ;
 		return scaledImage;
 	}
 	
@@ -120,7 +130,7 @@ public class Lesson extends JPanel {
     }
 
 	private void mouseControl() {
-		//reviewList, next;
+
 		prev.addActionListener(new ActionListener() {
 
 			@Override
@@ -128,7 +138,6 @@ public class Lesson extends JPanel {
 				count--;
 				if(count >= 0){
 					setWordAndImage(words.get(count));
-					if(count == 0) prev.setVisible(false);
 				}
 			}
 		});	
@@ -148,8 +157,23 @@ public class Lesson extends JPanel {
 			}
 		});	
 		
-		
-		
+		reviewList.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(!review.existOrNot(word.getText()))
+					if (lessonNum != 0) {
+						try {
+							review.addElement(word.getText());
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+					} else {
+//						review.removeElement(word.getText());
+					}
+			}
+		});	
+
 	}
 	
 }

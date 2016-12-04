@@ -80,6 +80,24 @@ public class MainMenu extends JPanel {
 			}
 		});	
 		
+		reviewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				Lesson.lessonNum = 0;
+				try {
+					Lesson.initLabels();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				InitFrame.lesson.setVisible(true);
+			}
+		});	
+		
+		
+		
 		exitButton.addActionListener(new ActionListener() {
 
 			@Override

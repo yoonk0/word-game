@@ -76,6 +76,13 @@ public class CongratulationsPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
+				Lesson.lessonNum = 0;
+				try {
+					Lesson.initLabels();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				InitFrame.lesson.setVisible(true);
 			}
 		});	
@@ -94,7 +101,13 @@ public class CongratulationsPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				//Lesson.lessonNum += 1;  check if end of lessons
+				Lesson.lessonNum += 1;
+				try {
+					Lesson.initLabels();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				InitFrame.lesson.setVisible(true);
 			}
 		});	

@@ -34,32 +34,32 @@ public class LessonMenu  extends JPanel{
 		image = getImage("lesson1");
 		lesson1Label = new JButton(new ImageIcon(image));
 		setButton(lesson1Label);
-		lesson1Label.setBounds(530, 270, 750, 80);
+		lesson1Label.setBounds(530, 220, 750, 80);
 		
 		image = getImage("lesson2");
 		lesson2Label = new JButton(new ImageIcon(image));
 		setButton(lesson2Label);
-		lesson2Label.setBounds(530, 370, 750, 80);
+		lesson2Label.setBounds(530, 320, 750, 80);
 		
 		image = getImage("lesson3");
 		lesson3Label = new JButton(new ImageIcon(image));
 		setButton(lesson3Label);
-		lesson3Label.setBounds(530, 470, 750, 80);
+		lesson3Label.setBounds(530, 420, 750, 80);
 		
 		image = getImage("lesson4");
 		lesson4Label = new JButton(new ImageIcon(image));
 		setButton(lesson4Label);
-		lesson4Label.setBounds(530, 570, 750, 80);
+		lesson4Label.setBounds(530, 520, 750, 80);
 		
 		image = getImage("lesson5");
 		lesson5Label = new JButton(new ImageIcon(image));
-		setButton(lesson4Label);
-		lesson5Label.setBounds(530, 570, 750, 80);
+		setButton(lesson5Label);
+		lesson5Label.setBounds(530, 620, 750, 80);
 		
 		image = getImage("homePage");
 		home = new JButton(new ImageIcon(image));
 		setButton(home);
-		home.setBounds(980, 800, 750, 80);
+		home.setBounds(980, 800, 720, 80);
 		
 	}
 	
@@ -87,6 +87,12 @@ public class LessonMenu  extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Lesson.lessonNum = 1;
+				try {
+					Lesson.initLabels();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				setVisible(false);
 				InitFrame.lesson.setVisible(true);
 			}
@@ -97,6 +103,12 @@ public class LessonMenu  extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Lesson.lessonNum = 2;
+				try {
+					Lesson.initLabels();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				setVisible(false);
 				InitFrame.lesson.setVisible(true);
 			}
@@ -107,6 +119,12 @@ public class LessonMenu  extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Lesson.lessonNum = 3;
+				try {
+					Lesson.initLabels();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				setVisible(false);
 				InitFrame.lesson.setVisible(true);
 			}
@@ -117,6 +135,12 @@ public class LessonMenu  extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Lesson.lessonNum = 4;
+				try {
+					Lesson.initLabels();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				setVisible(false);
 				InitFrame.lesson.setVisible(true);
 			}
@@ -127,6 +151,12 @@ public class LessonMenu  extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Lesson.lessonNum = 5;
+				try {
+					Lesson.initLabels();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				setVisible(false);
 				InitFrame.lesson.setVisible(true);
 			}

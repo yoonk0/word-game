@@ -14,9 +14,8 @@ public class ReviewList {
 	
 	public ReviewList(String path) throws Exception{
 		file = new File(path);
-		if(!file.exists()) file.createNewFile();
 		words = new ArrayList<>();
-		readList();
+		//readList();
 	}
 	
 	public void readList() throws Exception{
@@ -36,6 +35,10 @@ public class ReviewList {
 		bw.write(newWord + "\n");
 		bw.close();
 	}
+	
+//	public void deleteElement(String word) {
+//		
+//	}
 	
 	public ArrayList<String> getList(){
 		return words;

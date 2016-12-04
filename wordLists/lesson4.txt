@@ -2,7 +2,7 @@ Arm
 Cheek
 Chin
 Ear
-Eye
+Eyes
 Eyebrow
 Face
 Forehead

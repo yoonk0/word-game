@@ -1,0 +1,12 @@
+suit
+dress
+donut
+strawberry
+hamburger
+manager
+repairman
+police
+baker
+pastor
+salad
+juice

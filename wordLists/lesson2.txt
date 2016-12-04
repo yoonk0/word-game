@@ -9,7 +9,6 @@ Donut
 Fish
 Beverage
 Egg
-Hamburger
 Salad
 Hotdog
 Juice
