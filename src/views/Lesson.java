@@ -5,58 +5,55 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.*;
 import javax.imageio.*;
+import javax.media.CannotRealizeException;
+import javax.media.NoPlayerException;
 import javax.swing.*;
+
+import dictionary.AudioPlayer;
+import dictionary.Pronunciation;
 import tools.*;
 
 
 public class Lesson extends JPanel {
-	JButton prev, reviewList, next;
+	static JButton prev, reviewList, next, delete, play;
 	JPanel top, bottom, center;
 	Image backgroundImage;
 	static JLabel word;
 	static JLabel image;
 	static ArrayList<String> words; 
-	ReviewList review; 
+	static ReviewList review; 
 	static int count;
 	BorderLayout layout;
-	public static int lessonNum =1;
+	public static int lessonNum = 1;
 	
 	public Lesson(Image image) throws Exception {
 		backgroundImage = image;
 		initButtons();
 		initLabels();
-		addLabels();
+		addLabelsAndButtons();
 		mouseControl();
 		setLayout(null);
-		review = new ReviewList("wordLists/reviewlist.txt");	
+		review = new ReviewList("wordLists/reviewlist.txt");
 	}
 	
 	
-	private void initButtons() throws IOException {
+	public static void initButtons() throws IOException {
 		Image image;
 		image = getImage("previous");
 		prev = new JButton(new ImageIcon(image));
-		setButton(prev);
-		prev.setBounds(150, 860, 350, 80);
-		if(count == 0) prev.setVisible(false);
-		
 		image = getImage("next");
-		next = new JButton(new ImageIcon(image));
-		setButton(next);
-		next.setBounds(920, 860, 350, 80);
-		
-		if (lessonNum != 0) {							//if 0, review list
-			image = getImage("add");
-		} else { 
-			image = getImage("deletefromlist");
-		}
-		reviewList = new JButton(new ImageIcon(image));
-		setButton(reviewList);
-		reviewList.setBounds(610, 860, 350, 80);
-		
+		next = new JButton(new ImageIcon(image));	
+		image = getImage("add");
+		reviewList = new JButton(new ImageIcon(image));	
+		image = getImage("deletefromlist");
+		delete = new JButton(new ImageIcon(image));	
+		image = ImageIO.read(new File("images/card/lesson/play.png"));
+		Image scaledImage= image.getScaledInstance( 280, 120,  java.awt.Image.SCALE_SMOOTH ) ;
+		play = new JButton(new ImageIcon(scaledImage));	
 	}
 	
 	public static void initLabels() throws Exception{
+		System.out.println(lessonNum);
 		String wordSrc;
 		if(lessonNum == 0) {
 			wordSrc = "wordLists/reviewlist.txt";
@@ -78,16 +75,47 @@ public class Lesson extends JPanel {
 			Collections.shuffle(words);
 			setWordAndImage(words.get(count));
 		}
+		if (lessonNum != 0) {
+			reviewList.setVisible(true);
+			delete.setVisible(false);
+		} else {
+			reviewList.setVisible(false);
+			delete.setVisible(true);
+		}
+		
+		if(count == 0) prev.setVisible(false);
 		
 	}
 	
-	private void addLabels() {
+	private void addLabelsAndButtons() throws IOException {
 		add(word);
 		word.setFont(new Font("calibri", Font.PLAIN, 32));
-		word.setBounds(350, 30, 600, 80);
+		word.setBounds(350, 30, 600, 90);
 		word.setHorizontalAlignment(SwingConstants.CENTER);
+		
 		add(image);
 		image.setBounds(450, 280, 400, 400);
+		
+		add(prev);
+		setButton(prev);
+		prev.setBounds(150, 860, 300, 80);
+
+		add(next);
+		setButton(next);
+		next.setBounds(920, 860, 300, 80);
+		
+		add(reviewList); 
+		setButton(reviewList);
+		reviewList.setBounds(610, 860, 300, 80);
+		
+		add(delete); 
+		setButton(delete);
+		delete.setBounds(500, 860, 300, 80);
+		
+		add(play); 
+		setButton(play);
+		play.setBounds(500, 170, 280, 120);
+		
 	}
 
 	private static void setWordAndImage(String currentWord) {
@@ -111,9 +139,9 @@ public class Lesson extends JPanel {
 	}
 
 	
-	private Image getImage (String imageName) throws IOException {
+	private static Image getImage (String imageName) throws IOException {
 		Image image = ImageIO.read(new File("images/card/lesson/"+imageName+".png"));
-		Image scaledImage= image.getScaledInstance( 350, 80,  java.awt.Image.SCALE_SMOOTH ) ;
+		Image scaledImage= image.getScaledInstance( 300, 80,  java.awt.Image.SCALE_SMOOTH ) ;
 		return scaledImage;
 	}
 	
@@ -121,7 +149,6 @@ public class Lesson extends JPanel {
 	private void setButton(JButton button) throws IOException {
 		button.setBorder(BorderFactory.createEmptyBorder());
 		button.setContentAreaFilled(false);
-		add(button);
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -138,6 +165,7 @@ public class Lesson extends JPanel {
 				count--;
 				if(count >= 0){
 					setWordAndImage(words.get(count));
+					if(count == 0) prev.setVisible(false);
 				}
 			}
 		});	
@@ -161,16 +189,42 @@ public class Lesson extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(!review.existOrNot(word.getText()))
-					if (lessonNum != 0) {
-						try {
-							review.addElement(word.getText());
-						} catch (Exception e1) {
-							e1.printStackTrace();
-						}
-					} else {
-//						review.removeElement(word.getText());
+					try {
+						review.addElement(word.getText());
+					} catch (Exception e1) {
+						e1.printStackTrace();
 					}
+			}
+		});	
+		
+		delete.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+					try {
+						//review.deleteElement(word.getText());
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+			}
+		});	
+		
+		play.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Pronunciation p;
+				try {
+					p = new Pronunciation(word.getText());
+					AudioPlayer.play(p.getUrl());
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} catch (NoPlayerException e1) {
+					e1.printStackTrace();
+				} catch (CannotRealizeException e1) {
+					e1.printStackTrace();
+				}
+				
 			}
 		});	
 

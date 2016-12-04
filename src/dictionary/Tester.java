@@ -12,7 +12,7 @@ import javax.media.NoPlayerException;
 public class Tester{
 	public static void main(String[] args){
 		try {
-			Pronunciation p = new Pronunciation("autumn");
+			Pronunciation p = new Pronunciation("icecream");
 			AudioPlayer.play(p.getUrl());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

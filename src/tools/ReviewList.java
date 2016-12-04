@@ -15,7 +15,7 @@ public class ReviewList {
 	public ReviewList(String path) throws Exception{
 		file = new File(path);
 		words = new ArrayList<>();
-		//readList();
+		readList();
 	}
 	
 	public void readList() throws Exception{
@@ -30,22 +30,25 @@ public class ReviewList {
 	}
 	
 	public void addElement(String newWord) throws Exception{
-		FileWriter fw = new FileWriter(file, true);
-		BufferedWriter bw = new BufferedWriter(fw);
-		bw.write(newWord + "\n");
-		bw.close();
+		if(!words.contains(newWord)) {
+			FileWriter fw = new FileWriter(file, true);
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(newWord + "\n");
+			bw.close();
+			words.add(newWord);
+		}
 	}
 	
-//	public void deleteElement(String word) {
-//		
+//	public void deleteElement(String word) throws IOException {
+//
 //	}
-	
+//	
 	public ArrayList<String> getList(){
 		return words;
 	}
 	
-	public boolean existOrNot(String newWord){
-		if(words.contains(newWord)) return true;
-		return false;
-	}
+//	public boolean existOrNot(String newWord){
+//		if(words.contains(newWord)) return true;
+//		return false;
+//	}
 }

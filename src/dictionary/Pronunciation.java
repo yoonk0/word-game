@@ -61,7 +61,7 @@ public class Pronunciation {
 		 * @throws IOException
 		 */
 		private void getAudioURL() throws IOException {
-			Pattern pattern = Pattern.compile(".*<wav>(.*)</wav>.*");	
+			Pattern pattern = Pattern.compile(".*?<wav>(.*?)</wav>.*?");	
 			Matcher match = pattern.matcher(xml);
 			
 			if (match.matches()) {
