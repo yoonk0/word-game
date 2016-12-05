@@ -6,9 +6,12 @@ import java.io.*;
 import javax.imageio.*;
 import javax.swing.*;
 
+import tools.ReviewList;
+
 public class CongratulationsPanel extends JPanel{
 	Image backgroundImage;
 	JButton playGame, gotoReviewList, homePage, nextLesson;
+	ReviewList reviewList; 
 	
 	public CongratulationsPanel(Image image) throws Exception{
 		backgroundImage = image;
@@ -76,14 +79,23 @@ public class CongratulationsPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				Lesson.lessonNum = 0;
 				try {
-					Lesson.initLabels();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					reviewList = new ReviewList("wordLists/reviewlist.txt");
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				} 
+				if (reviewList.getList().isEmpty()) {
+					InitFrame.oops.setVisible(true);
+				}else {
+					Lesson.lessonNum = 0;
+					try {
+						Lesson.initLabels();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					InitFrame.lesson.setVisible(true);
 				}
-				InitFrame.lesson.setVisible(true);
 			}
 		});	
 		
