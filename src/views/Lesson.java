@@ -88,33 +88,36 @@ public class Lesson extends JPanel {
 	}
 	
 	private void addLabelsAndButtons() throws IOException {
+		int w = Toolkit.getDefaultToolkit().getScreenSize().width;
+		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
+		
 		add(word);
 		word.setFont(new Font("calibri", Font.PLAIN, 32));
-		word.setBounds(350, 30, 600, 90);
+		word.setBounds((int) (w*0.18), (int)(h*0.03), (int) (w*0.3), (int) (h*0.08));
 		word.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		add(image);
-		image.setBounds(450, 280, 400, 400);
+		image.setBounds((int) (w*0.22), (int)(h*0.21), (int) (w*0.24), (int) (h*0.44));
 		
 		add(prev);
 		setButton(prev);
-		prev.setBounds(150, 860, 300, 80);
+		prev.setBounds((int) (w*0.12), (int)(h*0.78), (int) (w*0.1), (int) (h*0.08));
 
 		add(next);
 		setButton(next);
-		next.setBounds(920, 860, 300, 80);
+		next.setBounds((int) (w*0.50), (int)(h*0.79), (int) (w*0.1), (int) (h*0.08));
 		
 		add(reviewList); 
 		setButton(reviewList);
-		reviewList.setBounds(610, 860, 300, 80);
+		reviewList.setBounds((int) (w*0.30), (int)(h*0.78), (int) (w*0.25), (int) (h*0.08));
 		
 		add(delete); 
 		setButton(delete);
-		delete.setBounds(500, 860, 300, 80);
+		delete.setBounds((int) (w*0.25), (int)(h*0.78), (int) (w*0.20), (int) (h*0.06));
 		
 		add(play); 
 		setButton(play);
-		play.setBounds(500, 170, 280, 120);
+		play.setBounds((int) (w*0.30), (int)(h*0.14), (int) (w*0.07), (int) (h*0.07));
 		
 	}
 
