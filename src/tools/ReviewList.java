@@ -39,10 +39,32 @@ public class ReviewList {
 		}
 	}
 	
-//	public void deleteElement(String word) throws IOException {
-//
-//	}
-//	
+	public void deleteElement(String word) throws IOException {
+		File temp = new File("wordLists/temp.txt");
+		FileReader fr = new FileReader(file);
+		BufferedReader br = new BufferedReader(fr);
+		FileWriter fw = new FileWriter(temp);
+		BufferedWriter bw = new BufferedWriter(fw);
+		
+		String tmp;
+		while((tmp = br.readLine()) != null){
+			if (!tmp.trim().equals(word)) {
+				bw.write(tmp.trim() + "\n");
+			}
+		}
+		br.close();
+		bw.close();
+		
+		temp.renameTo(file);
+		
+		for (int i = 0; i < words.size(); i++) {
+			if (words.get(i).equals(word)) {
+				words.remove(i);
+			}
+		}	
+	}
+	
+	
 	public ArrayList<String> getList(){
 		return words;
 	}

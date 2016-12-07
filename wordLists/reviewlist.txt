@@ -1,3 +1,7 @@
-pig
-rabbit
-monkey
+water
+egg
+icecream
+pear
+beverage
+bread
+owl

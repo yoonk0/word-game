@@ -205,7 +205,7 @@ public class Lesson extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 					try {
-						//review.deleteElement(word.getText());
+						review.deleteElement(word.getText());
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
