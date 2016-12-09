@@ -41,13 +41,14 @@ public class InitFrame extends JFrame {
 	private void addPanels() throws Exception {
 		Image image = ImageIO.read(new File("images/dash/dashwith.jpg"));
 		main= new MainMenu(image);
-		oops = new OopsPanel(image);
 		image = ImageIO.read(new File("images/dash/dashwith.jpg"));
 		lessonMenu = new LessonMenu(image);
 		image = ImageIO.read(new File("images/card/lesson/cardwith.jpg"));
 		lesson = new Lesson(image);
 		image = ImageIO.read(new File("images/end/finishLesson/lessonfinished.jpg"));
 		congrats = new CongratulationsPanel(image);	
+		image = ImageIO.read(new File("images/end/oops/oops.jpg"));
+		oops = new OopsPanel(image);
 		this.add(main, "main");
 		this.add(lessonMenu, "lessonMenu");
 		this.add(lesson, "lesson");
