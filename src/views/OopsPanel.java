@@ -3,6 +3,7 @@ package views;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -28,6 +29,8 @@ public class OopsPanel extends JPanel{
 	}
 	
 	private void initLabelsAndButtons() throws IOException {
+		int w = Toolkit.getDefaultToolkit().getScreenSize().width;
+		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
 		Image image;
 
 		text = new JLabel("Oops, there are no words in the review list yet!");
@@ -38,18 +41,22 @@ public class OopsPanel extends JPanel{
 		image = getImage("homepage");
 		homePage = new JButton(new ImageIcon(image));
 		setButton(homePage);
-		homePage.setBounds(530, 370, 250, 80);
+		//homePage.setBounds(530, 370, 250, 80);
+		homePage.setBounds((int) (w*0.21), (int)(h*0.32), (int) (w*0.3), (int) (h*0.08));
 		
 		
 		image = getImage("playGames");
 		playGame = new JButton(new ImageIcon(image));
 		setButton(playGame);
-		playGame.setBounds(530, 470, 250, 80);
+		//playGame.setBounds(530, 470, 250, 80);
+		playGame.setBounds((int) (w*0.21), (int)(h*0.42), (int) (w*0.3), (int) (h*0.08));
 		
 		image = getImage("watchLessons");
 		lessonMenu = new JButton(new ImageIcon(image));
 		setButton(lessonMenu);
-		lessonMenu.setBounds(530, 570, 250, 80);
+		//lessonMenu.setBounds(530, 570, 250, 80);
+		lessonMenu.setBounds((int) (w*0.21), (int)(h*0.52), (int) (w*0.3), (int) (h*0.08));
+		
 	}
 	
 	private Image getImage (String imageName) throws IOException {
