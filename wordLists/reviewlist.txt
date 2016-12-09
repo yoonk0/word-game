@@ -1,7 +1,0 @@
-water
-egg
-icecream
-pear
-beverage
-bread
-owl
