@@ -12,15 +12,17 @@ import java.util.regex.Pattern;
 import javax.media.CannotRealizeException;
 import javax.media.NoPlayerException;
 /**
- * This class fetches pronunciation audio url with merriam webster API by parsing the XML file 
+ * This class fetches pronunciation audio url, definition, and example sentence with merriam webster API by parsing the XML file 
  * @author YoonKim
  *
  */
-public class Pronunciation {
+public class XMLRequest {
 		private String word; 
 		private String apiKey; 
 		private String xml; 
-		private URL url; 
+		private URL audioUrl; 
+		private String sentence; 
+		private String definition; 
 		
 		/**
 		 * Constructor for the class
@@ -29,11 +31,13 @@ public class Pronunciation {
 		 * @param word
 		 * @throws IOException
 		 */
-		public Pronunciation (String word) throws IOException {
+		public XMLRequest (String word) throws IOException {
 			this.word = word;
 			apiKey = "876c8a94-49cf-4c90-bba0-effb158a4ba2";
 			getXMLresponse();
 			getAudioURL();
+			getExampleSentences();
+			getDef(); 
 		}
 		
 		/**
@@ -67,17 +71,47 @@ public class Pronunciation {
 			if (match.matches()) {
 				String m = match.group(1);
 				if (m.startsWith("bix")) {
-					url = new URL("http://media.merriam-webster.com/soundc11/bix/"+m);
+					audioUrl = new URL("http://media.merriam-webster.com/soundc11/bix/"+m);
 				} else if (m.startsWith("gg")) {
-					url = new URL("http://media.merriam-webster.com/soundc11/gg/"+m);
+					audioUrl = new URL("http://media.merriam-webster.com/soundc11/gg/"+m);
 				} else {
-					url = new URL("http://media.merriam-webster.com/soundc11/"+m.charAt(0)+"/"+m);
+					audioUrl = new URL("http://media.merriam-webster.com/soundc11/"+m.charAt(0)+"/"+m);
 				}
 			} else {
 					throw new FileNotFoundException();
 			}
 		}
+		
+		/**
+		 * Uses the parsed response to extract the first example sentence 
+		 */
+		private void getExampleSentences() {
+			Pattern pattern = Pattern.compile(".*?<vi>(.*?)</vi>.*?");	
+			Matcher match = pattern.matcher(xml);
+			
+			if (match.matches()) {
+				String m = match.group(1).replaceAll("<it>(.*?)</it>", "[       ]");
+				sentence = m; 
+			}
+		}
+		
+		/**
+		 * Uses the parsed response to extract the first definition 
+		 */
+		private void getDef() {
+			Pattern pattern = Pattern.compile(".*?<dt>:(.*?)<.*?");	
+			Matcher match = pattern.matcher(xml);
+			
+			if (match.matches()) {
+				String m = match.group(1);
+				definition = m; 
+			}
+		}
 
+		/**
+		 * Accessor and mutator methods for word, AudioURL, Sentence, and Definition
+		 * 
+		 */
 		public String getWord() {
 			return word;
 		}
@@ -86,30 +120,16 @@ public class Pronunciation {
 			this.word = word;
 		}
 
-		public String getApiKey() {
-			return apiKey;
+		public URL getAudioUrl() {
+			return audioUrl;
 		}
 
-		public void setApiKey(String apiKey) {
-			this.apiKey = apiKey;
+		public String getSentence() {
+			return sentence;
 		}
 
-		public String getXml() {
-			return xml;
+		public String getDefinition() {
+			return definition; 
 		}
-
-		public void setXml(String xml) {
-			this.xml = xml;
-		}
-
-		public URL getUrl() {
-			return url;
-		}
-
-		public void setUrl(URL url) {
-			this.url = url;
-		}
-
-
 
 }

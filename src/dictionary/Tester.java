@@ -12,8 +12,10 @@ import javax.media.NoPlayerException;
 public class Tester{
 	public static void main(String[] args){
 		try {
-			Pronunciation p = new Pronunciation("icecream");
-			AudioPlayer.play(p.getUrl());
+			XMLRequest x = new XMLRequest("monkey");
+			AudioPlayer.play(x.getAudioUrl());
+			System.out.println(x.getDefinition());
+			if(x.getSentence() != null)	System.out.println(x.getSentence());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

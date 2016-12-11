@@ -10,7 +10,7 @@ import javax.media.NoPlayerException;
 import javax.swing.*;
 
 import dictionary.AudioPlayer;
-import dictionary.Pronunciation;
+import dictionary.XMLRequest;
 import tools.*;
 
 
@@ -216,10 +216,10 @@ public class Lesson extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Pronunciation p;
+				XMLRequest x;
 				try {
-					p = new Pronunciation(word.getText());
-					AudioPlayer.play(p.getUrl());
+					x = new XMLRequest(word.getText());
+					AudioPlayer.play(x.getAudioUrl());
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				} catch (NoPlayerException e1) {
