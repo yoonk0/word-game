@@ -16,11 +16,20 @@ import javax.swing.JButton;
 
 import javax.swing.JPanel;
 
-
+/**
+ * This class represents the lesson menu
+ * @author YoonKim
+ *
+ */
 public class LessonMenu  extends JPanel{
 	JButton lesson1Label, lesson2Label, lesson3Label, lesson4Label, lesson5Label, home;
 	Image backgroundImage;
 	
+	/**
+	 * This is the constructor for the class
+	 * @param background image for the panel
+	 * @throws Exception
+	 */
 	public LessonMenu(Image image) throws Exception {
 		backgroundImage = image;
 		initButtons();
@@ -28,6 +37,10 @@ public class LessonMenu  extends JPanel{
 		setLayout(null);
 	}
 	
+	/**
+	 * helper method to initialize buttons
+	 * @throws Exception
+	 */
 	private void initButtons() throws Exception{
 		setLayout(null);
 		Image image; 
@@ -66,23 +79,41 @@ public class LessonMenu  extends JPanel{
 		
 	}
 	
+	/**
+	 * Helper method to get&set image
+	 * @param imageName
+	 * @return
+	 * @throws IOException
+	 */
 	private Image getImage (String imageName) throws IOException {
 		Image image = ImageIO.read(new File("images/lessonlist/"+imageName+".png"));
 		Image scaledImage= image.getScaledInstance( 650, 80,  java.awt.Image.SCALE_SMOOTH ) ;
 		return scaledImage;
 	}
 	
+	/**
+	 * helper function to set buttons
+	 * @param button
+	 * @throws IOException
+	 */
 	private void setButton(JButton button) throws IOException {
 		button.setBorder(BorderFactory.createEmptyBorder());
 		button.setContentAreaFilled(false);
 		add(button);
 	}
 	
+	/**
+	 * graphics method to set background image
+	 */
 	public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
     }
 
+	
+	/**
+	 * This method deals with all the mouse control in the panel
+	 */
 	private void mouseControl() {
 
 		lesson1Label.addActionListener(new ActionListener() {

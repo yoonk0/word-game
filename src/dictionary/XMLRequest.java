@@ -21,7 +21,6 @@ public class XMLRequest {
 		private String apiKey; 
 		private String xml; 
 		private URL audioUrl; 
-		private String sentence; 
 		private String definition; 
 		
 		/**
@@ -36,8 +35,8 @@ public class XMLRequest {
 			apiKey = "876c8a94-49cf-4c90-bba0-effb158a4ba2";
 			getXMLresponse();
 			getAudioURL();
-			getExampleSentences();
 			getDef(); 
+			getExampleSentences();
 		}
 		
 		/**
@@ -90,8 +89,10 @@ public class XMLRequest {
 			Matcher match = pattern.matcher(xml);
 			
 			if (match.matches()) {
-				String m = match.group(1).replaceAll("<it>(.*?)</it>", "[       ]");
-				sentence = m; 
+				String m = match.group(1).replaceAll("<it>(.*?)</it>", "[ &nbsp &nbsp &nbsp &nbsp &nbsp]");
+				definition += "<br>";
+				definition += "<br>";
+				definition += m;
 			}
 		}
 		
@@ -105,6 +106,7 @@ public class XMLRequest {
 			if (match.matches()) {
 				String m = match.group(1);
 				definition = m; 
+				definition = definition.substring(0,1).toUpperCase()+ definition.substring(1); //capitalize the first letter
 			}
 		}
 
@@ -122,10 +124,6 @@ public class XMLRequest {
 
 		public URL getAudioUrl() {
 			return audioUrl;
-		}
-
-		public String getSentence() {
-			return sentence;
 		}
 
 		public String getDefinition() {

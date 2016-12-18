@@ -13,7 +13,13 @@ import dictionary.AudioPlayer;
 import dictionary.XMLRequest;
 import tools.*;
 
-
+/**
+ * Lesson panel with word, play button, and image displayed
+ * Appropriate list of words are pulled up from the set lesson number ( review list is lesson 0 )
+ * Extends JPanel and is included in the InitFrame
+ * @author YoonKim
+ *
+ */
 public class Lesson extends JPanel {
 	static JButton prev, reviewList, next, delete, play;
 	JPanel top, bottom, center;
@@ -24,8 +30,15 @@ public class Lesson extends JPanel {
 	static ReviewList review; 
 	static int count;
 	BorderLayout layout;
-	public static int lessonNum = 1;
+	public static int lessonNum = 1;				//can be set from other classes 
 	
+	
+	/**
+	 * This is the constructor for the class
+	 * Initializes all the buttons, labels, and mouse controls on them 
+	 * @param image of the background
+	 * @throws Exception
+	 */
 	public Lesson(Image image) throws Exception {
 		backgroundImage = image;
 		initButtons();
@@ -36,7 +49,10 @@ public class Lesson extends JPanel {
 		review = new ReviewList("wordLists/reviewlist.txt");
 	}
 	
-	
+	/**
+	 * Initializes all the buttons with images and appropriate sizing
+	 * @throws IOException
+	 */
 	public static void initButtons() throws IOException {
 		Image image;
 		image = getImage("previous");
@@ -52,8 +68,13 @@ public class Lesson extends JPanel {
 		play = new JButton(new ImageIcon(scaledImage));	
 	}
 	
+	/**
+	 * Initializes all the labels according the the set lesson number
+	 * words in the lesson is displayed in random order 
+	 * Delete from review list button is hidden for lessons 1-5 and add to review list button is hiddent for review lesson
+	 * @throws Exception
+	 */
 	public static void initLabels() throws Exception{
-		System.out.println(lessonNum);
 		String wordSrc;
 		if(lessonNum == 0) {
 			wordSrc = "wordLists/reviewlist.txt";
@@ -83,10 +104,15 @@ public class Lesson extends JPanel {
 			delete.setVisible(true);
 		}
 		
-		if(count == 0) prev.setVisible(false);
+		if(count == 0) prev.setVisible(false);					//prev button hidden when there is no previous word
 		
 	}
 	
+	
+	/**
+	 * adds initialized labels and buttons to the panel
+	 * @throws IOException
+	 */
 	private void addLabelsAndButtons() throws IOException {
 		int w = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -121,6 +147,10 @@ public class Lesson extends JPanel {
 		
 	}
 
+	/**
+	 * helper method to set the jLabel word and image for every word 
+	 * @param currentWord
+	 */
 	private static void setWordAndImage(String currentWord) {
 		if (word == null) {
 			word = new JLabel(currentWord);
@@ -141,7 +171,12 @@ public class Lesson extends JPanel {
 		}
 	}
 
-	
+	/**
+	 * Helper method to get and set image for buttons 
+	 * @param imageName
+	 * @return
+	 * @throws IOException
+	 */
 	private static Image getImage (String imageName) throws IOException {
 		Image image = ImageIO.read(new File("images/card/lesson/"+imageName+".png"));
 		Image scaledImage= image.getScaledInstance( 300, 80,  java.awt.Image.SCALE_SMOOTH ) ;
@@ -149,16 +184,29 @@ public class Lesson extends JPanel {
 	}
 	
 	
+	/**
+	 * Helper method to set button settings
+	 * @param button
+	 * @throws IOException
+	 */
 	private void setButton(JButton button) throws IOException {
 		button.setBorder(BorderFactory.createEmptyBorder());
 		button.setContentAreaFilled(false);
 	}
 	
+	/**
+	 * set background image
+	 */
 	public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
     }
 
+	
+	/**
+	 * This method sets all the controls for mouse action 
+	 * for when each buttons are clicked
+	 */
 	private void mouseControl() {
 
 		prev.addActionListener(new ActionListener() {

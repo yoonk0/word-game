@@ -16,12 +16,22 @@ import javax.swing.JPanel;
 
 import tools.ReviewList;
 
-
+/**
+ * This class represents the main menu page for the program
+ * @author YoonKim
+ *
+ */
 public class MainMenu extends JPanel {
 	JButton watchLessonsButton, playGamesButton, reviewButton, exitButton;
 	Image backgroundImage;
 	ReviewList reviewList; 
 
+	/**
+	 * This is the constructor for the class 
+	 * calls all the helper methods to initialize elements in the panel
+	 * @param image
+	 * @throws Exception
+	 */
 	public MainMenu(Image image) throws Exception {
 		backgroundImage = image;
 		initButtons();
@@ -30,7 +40,10 @@ public class MainMenu extends JPanel {
 	}
 	
 
-
+	/**
+	 * Helper method to set the buttons
+	 * @throws IOException
+	 */
 	private void initButtons() throws IOException {
 		int w = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -59,24 +72,42 @@ public class MainMenu extends JPanel {
 		exitButton.setBounds((int) (w*0.21), (int)(h*0.52), (int) (w*0.3), (int) (h*0.08));
 	}
 	
+	/**
+	 * helper method for initButtons to get&set images for the buttons
+	 * @param name of the image
+	 * @return formatted image
+	 * @throws IOException
+	 */
 	private Image getImage (String imageName) throws IOException {
 		Image image = ImageIO.read(new File("images/dash/"+imageName+".jpg"));
 		Image scaledImage= image.getScaledInstance( 250, 80,  java.awt.Image.SCALE_SMOOTH ) ;
 		return scaledImage;
 	}
 	
-	
+	/**
+	 * helper method to set button settings
+	 * @param button
+	 * @throws IOException
+	 */
 	private void setButton(JButton button) throws IOException {
 		button.setBorder(BorderFactory.createEmptyBorder());
 		button.setContentAreaFilled(false);
 		add(button);
 	}
 
+	
+	/**
+	 * graphics method to set background image 
+	 */
 	public void paintComponent(Graphics g) {
          super.paintComponent(g);
          g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
      }
 
+	
+	/**
+	 * This method deals with all the mouse control in the panel
+	 */
 	private void mouseControl() {
 
 		watchLessonsButton.addActionListener(new ActionListener() {
@@ -87,6 +118,15 @@ public class MainMenu extends JPanel {
 				InitFrame.lessonMenu.setVisible(true);
 			}
 		});	
+		
+//		playGamesButton.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//			}
+//		});	
+		
 		
 		reviewButton.addActionListener(new ActionListener() {
 			
@@ -99,9 +139,9 @@ public class MainMenu extends JPanel {
 					e2.printStackTrace();
 				} 
 				if (reviewList.getList().isEmpty()) {
-					InitFrame.oops.setVisible(true);
+					InitFrame.oops.setVisible(true);			//if reviewList is empty show oops page
 				}else {
-					Lesson.lessonNum = 0;
+					Lesson.lessonNum = 0;			//set lesson number to 0 
 					try {
 						Lesson.initLabels();
 					} catch (Exception e1) {

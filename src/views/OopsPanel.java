@@ -16,11 +16,21 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * This class represents the page when review list is called but there are no words in the review list
+ * @author YoonKim
+ *
+ */
 public class OopsPanel extends JPanel{
 	Image backgroundImage;
 	JButton playGame, homePage, lessonMenu;
 	JLabel text; 
 
+	/**
+	 * This is the constructor for the class
+	 * @param image
+	 * @throws IOException
+	 */
 	public OopsPanel(Image image) throws IOException {
 		backgroundImage = image;
 		initLabelsAndButtons();
@@ -28,6 +38,12 @@ public class OopsPanel extends JPanel{
 		setLayout(null);
 	}
 	
+	
+	/**
+	 * This class initializes all the buttons and labels 
+	 * The page gives options from the main menu except for reviewing words
+	 * @throws IOException
+	 */
 	private void initLabelsAndButtons() throws IOException {
 		int w = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -59,24 +75,42 @@ public class OopsPanel extends JPanel{
 		
 	}
 	
+	/**
+	 * helper method to retrieve and set image
+	 * @param imageName
+	 * @return formatted image
+	 * @throws IOException
+	 */
 	private Image getImage (String imageName) throws IOException {
 		Image image = ImageIO.read(new File("images/dash/"+imageName+".jpg"));
 		Image scaledImage= image.getScaledInstance( 250, 80,  java.awt.Image.SCALE_SMOOTH ) ;
 		return scaledImage;
 	}
 	
-	
+	/**
+	 * helper method to set buttons
+	 * @param button
+	 * @throws IOException
+	 */
 	private void setButton(JButton button) throws IOException {
 		button.setBorder(BorderFactory.createEmptyBorder());
 		button.setContentAreaFilled(false);
 		add(button);
 	}
 
+	
+	/**
+	 * set background image
+	 */
 	public void paintComponent(Graphics g) {
          super.paintComponent(g);
          g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
      }
 
+	
+	/**
+	 * This method deals with all the mouse control in the panel
+	 */
 	private void mouseControl() {
 
 		playGame.addActionListener(new ActionListener() {

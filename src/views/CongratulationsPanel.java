@@ -8,11 +8,21 @@ import javax.swing.*;
 
 import tools.ReviewList;
 
+/**
+ * This class represents the congratulations page at the end of each lesson
+ * @author YoonKim
+ *
+ */
 public class CongratulationsPanel extends JPanel{
 	Image backgroundImage;
 	JButton playGame, gotoReviewList, homePage, nextLesson;
 	ReviewList reviewList; 
 	
+	/**
+	 * This is the constructor for the class 
+	 * @param image
+	 * @throws Exception
+	 */
 	public CongratulationsPanel(Image image) throws Exception{
 		backgroundImage = image;
 		initButtons();
@@ -21,6 +31,10 @@ public class CongratulationsPanel extends JPanel{
 		
 	}
 
+	/**
+	 * This class initializes all the buttons in the menu
+	 * @throws IOException
+	 */
 	private void initButtons() throws IOException {
 		int w = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -48,6 +62,13 @@ public class CongratulationsPanel extends JPanel{
 	
 	}
 	
+	
+	/**
+	 * helper method for retrieving and setting images
+	 * @param name of image
+	 * @return formatted image
+	 * @throws IOException
+	 */
 	private Image getImage (String imageName) throws IOException {
 		Image image = ImageIO.read(new File("images/end/finishLesson/"+imageName+".jpg"));
 		Image scaledImage= image.getScaledInstance( 250, 80,  java.awt.Image.SCALE_SMOOTH ) ;
@@ -55,17 +76,30 @@ public class CongratulationsPanel extends JPanel{
 	}
 	
 	
+	/**
+	 * helper method to set all the buttons
+	 * @param button
+	 * @throws IOException
+	 */
 	private void setButton(JButton button) throws IOException {
 		button.setBorder(BorderFactory.createEmptyBorder());
 		button.setContentAreaFilled(false);
 		add(button);
 	}
 
+	
+	/**
+	 * method to set background image
+	 */
 	public void paintComponent(Graphics g) {
          super.paintComponent(g);
          g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
      }
 
+	
+	/**
+	 * This method deals with all the mouse control in the panel
+	 */
 	private void mouseControl() {
 
 		playGame.addActionListener(new ActionListener() {
@@ -77,7 +111,8 @@ public class CongratulationsPanel extends JPanel{
 			}
 		});	
 		
-		gotoReviewList.addActionListener(new ActionListener() {
+		gotoReviewList.addActionListener(new ActionListener() { //checks if reviewlist is empty and if not, 
+																//calls lesson page after setting lessonNum to 0
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -90,9 +125,9 @@ public class CongratulationsPanel extends JPanel{
 				if (reviewList.getList().isEmpty()) {
 					InitFrame.oops.setVisible(true);
 				}else {
-					Lesson.lessonNum = 0;
+					Lesson.lessonNum = 0;				//set lesson number
 					try {
-						Lesson.initLabels();
+						Lesson.initLabels();			//initialize labels again
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -116,9 +151,9 @@ public class CongratulationsPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				Lesson.lessonNum += 1;
+				Lesson.lessonNum += 1;					//set lesson number
 				try {
-					Lesson.initLabels();
+					Lesson.initLabels();				//initialize labels again 
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

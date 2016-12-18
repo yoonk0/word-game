@@ -1,6 +1,10 @@
 package views;
 
-
+/**
+ * This is the class to launch the program 
+ * @author YoonKim
+ *
+ */
 
 public class LaunchBoard {
 	InitFrame initFrame;
