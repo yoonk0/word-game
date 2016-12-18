@@ -7,7 +7,6 @@ lion
 monkey
 owl
 pig
-panda
 rabbit
 rat
 sheep
