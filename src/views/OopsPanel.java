@@ -36,6 +36,7 @@ public class OopsPanel extends JPanel{
 		initLabelsAndButtons();
 		mouseControl();
 		setLayout(null);
+		this.addKeyListener(InitFrame.game);
 	}
 	
 	
@@ -120,6 +121,7 @@ public class OopsPanel extends JPanel{
 //				setVisible(false);
 				//InitFrame.game.setVisible(true);
 				InitFrame.mainLayout.show(getParent(), "game");
+				InitFrame.t.resume();
 			}
 		});	
 		

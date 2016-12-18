@@ -20,7 +20,8 @@ public class InitFrame extends JFrame{
 	public static OopsPanel oops; 
 	public static GamePanel game; 
 	public static QuestionPanel question; 
-	public static EndOfGamePanel end; 
+	public static EndOfGamePanel end;
+	public static Thread t = null;
 
 	/**
 	 * Constructor for the class 
@@ -29,7 +30,7 @@ public class InitFrame extends JFrame{
 	public InitFrame() throws Exception{
 		initFrame();
 		addPanels();
-		this.addKeyListener(game);
+//		this.addKeyListener(game);
 	}
 	
 	/**
@@ -63,9 +64,11 @@ public class InitFrame extends JFrame{
 		congrats = new CongratulationsPanel(image);	
 		image = ImageIO.read(new File("images/end/oops/oops.jpg"));
 		oops = new OopsPanel(image);
-		game = new GamePanel(); 
-		Thread t = new Thread(game);
+		game = new GamePanel();
+		this.addKeyListener(game);
+		t = new Thread(InitFrame.game);
 		t.start();
+		t.suspend();
 		question = new QuestionPanel(); 
 //		image = ImageIO.read(new File("images/game/EndOfGame.jpg"));
 		end = new EndOfGamePanel();

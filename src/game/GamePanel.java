@@ -31,6 +31,7 @@ import views.InitFrame;
 
 public class GamePanel extends JPanel implements KeyListener, Runnable, MouseListener{
 	Car car = null;
+	public static Thread carT = null;
 	
 	ArrayList<Plant> plants = null;
 	int numOfPlants;
@@ -41,6 +42,7 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 	int numOfClouds;
 	
 	Sun sun = null;
+	Thread sunT = null;
 	
 	ArrayList<House> houses = null;
 	int numOfHouses;
@@ -48,7 +50,9 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 	
 	
 	ArrayList<Money> money1 = null;
+	public static ArrayList<Thread> money1T = null;
 	ArrayList<Money> money2 = null;
+	public static ArrayList<Thread> money2T = null;
 	int numOfMoney1;
 	int numOfMoney2;
 	
@@ -74,15 +78,17 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 		Image image = ImageIO.read(new File("images/game/car.png"));
 		image= image.getScaledInstance( (int)(width*0.2), (int)(height*0.2),  java.awt.Image.SCALE_SMOOTH ) ;
 		car = new Car(0, (int)(height * 0.65), new ImageIcon(image));
-		Thread carT = new Thread(car);
+		carT = new Thread(car);
 		carT.start();
 		plants = new ArrayList<>();
 		clouds = new ArrayList<>();
 		houses = new ArrayList<>();
 		money1 = new ArrayList<>();
+		money1T = new ArrayList<>();
 		money2 = new ArrayList<>();
+		money2T = new ArrayList<>();
 		sun = new Sun();
-		Thread sunT = new Thread(sun);
+		sunT = new Thread(sun);
 		sunT.start();
 		
 		numOfPlants = 8;
@@ -129,6 +135,7 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 			Money tmp = new Money(tempx, tempy);
 			money1.add(tmp);
 			Thread t = new Thread(tmp);
+			money1T.add(t);
 			t.start();
 		}
 				
@@ -138,6 +145,7 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 			Money tmp = new Money(tempx, tempy);
 			money2.add(tmp);
 			Thread t = new Thread(tmp);
+			money2T.add(t);
 			t.start();
 		}
 		
@@ -174,6 +182,15 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 					e.printStackTrace();
 				}
 //				Game.layout.show(getParent(), "question");
+				sunT.suspend();
+				carT.suspend();
+				
+				for(int i = 0; i < money1T.size(); i++)
+					money1T.get(i).suspend();
+				
+				for(int i = 0; i < money2T.size(); i++)
+					money2T.get(i).suspend();
+				
 				InitFrame.mainLayout.show(getParent(), "question");
 				wordCount++; 
 				obstacle = new Obstacle(width);
@@ -280,12 +297,14 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 			Money tmp = money1.get(i);
 			if(!tmp.isLive()){
 				money1.remove(i);
+				money1T.remove(i);
 				int tempx = (int)(car.getX() + car.getSizeWidth() + (obstacle.getX() - car.sizeWidth - car.getX()) * Math.random());
 				int tempy = (int)(height * (0.65 + Math.random() * 0.18));
 				Money newm = new Money(tempx, tempy);
 				newm.setX(width + 166);
 				money1.add(newm);
 				Thread t = new Thread(newm);
+				money1T.add(t);
 				t.start();
 			}
 		}
@@ -294,12 +313,14 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 			Money tmp = money2.get(i);
 			if(!tmp.isLive()){
 				money2.remove(i);
+				money2.remove(i);
 				int tempx = (int)(obstacle.getX() + obstacle.getSizeWidth() + (width - obstacle.getX() + obstacle.getSizeWidth()) * Math.random());
 				int tempy = (int)(height * (0.65 + Math.random() * 0.18));
 				Money newm = new Money(tempx, tempy);
 				newm.setX(width + 166);
 				money2.add(newm);
 				Thread t = new Thread(newm);
+				money2T.add(t);
 				t.start();
 			}
 		}

@@ -37,6 +37,7 @@ public class MainMenu extends JPanel{
 		initButtons();
 		mouseControl();
 		setLayout(null);
+		this.addKeyListener(InitFrame.game);
 	}
 	
 
@@ -126,6 +127,7 @@ public class MainMenu extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 //				setVisible(false);
 				InitFrame.mainLayout.show(getParent(), "game");
+				InitFrame.t.resume();
 			}
 		});	
 		

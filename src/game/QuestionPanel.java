@@ -122,6 +122,14 @@ public class QuestionPanel extends JPanel{
 						InitFrame.mainLayout.show(getParent(), "end");
 					} else {
 //					Game.layout.show(getParent(), "game");
+						GamePanel.carT.resume();
+						
+						for(int i = 0; i < GamePanel.money1T.size(); i++)
+							GamePanel.money1T.get(i).resume();
+						
+						for(int i = 0; i < GamePanel.money2T.size(); i++)
+							GamePanel.money2T.get(i).resume();
+						
 						InitFrame.mainLayout.show(getParent(), "game");
 					}
 				} else {
@@ -131,6 +139,14 @@ public class QuestionPanel extends JPanel{
 						InitFrame.mainLayout.show(getParent(), "end");
 					} else {
 //					Game.layout.show(getParent(), "game");
+						GamePanel.carT.resume();
+						
+						for(int i = 0; i < GamePanel.money1T.size(); i++)
+							GamePanel.money1T.get(i).resume();
+						
+						for(int i = 0; i < GamePanel.money2T.size(); i++)
+							GamePanel.money2T.get(i).resume();
+						
 						InitFrame.mainLayout.show(getParent(), "game");
 					}
 				}

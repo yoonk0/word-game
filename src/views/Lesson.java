@@ -47,6 +47,7 @@ public class Lesson extends JPanel {
 		mouseControl();
 		setLayout(null);
 		review = new ReviewList("wordLists/reviewlist.txt");
+		this.addKeyListener(InitFrame.game);
 	}
 	
 	/**

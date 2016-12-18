@@ -35,6 +35,7 @@ public class LessonMenu  extends JPanel{
 		initButtons();
 		mouseControl();
 		setLayout(null);
+		this.addKeyListener(InitFrame.game);
 	}
 	
 	/**
