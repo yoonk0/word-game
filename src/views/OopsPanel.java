@@ -49,10 +49,10 @@ public class OopsPanel extends JPanel{
 		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
 		Image image;
 
-		text = new JLabel("Oops, there are no words in the review list yet!");
-		add(text);
-		text.setBounds(450, 250, 800, 100);
-		text.setFont(new Font("calibri", Font.PLAIN, 24));
+//		text = new JLabel("Oops, there are no words in the review list yet!");
+//		add(text);
+//		text.setBounds(450, 250, 800, 100);
+//		text.setFont(new Font("calibri", Font.PLAIN, 24));
 		
 		image = getImage("homepage");
 		homePage = new JButton(new ImageIcon(image));
@@ -117,8 +117,9 @@ public class OopsPanel extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
+//				setVisible(false);
 				//InitFrame.game.setVisible(true);
+				InitFrame.mainLayout.show(getParent(), "game");
 			}
 		});	
 		
@@ -126,8 +127,9 @@ public class OopsPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				InitFrame.main.setVisible(true);
+//				setVisible(false);
+//				InitFrame.main.setVisible(true);
+				InitFrame.mainLayout.show(getParent(), "main");
 			}
 		});	
 		
@@ -135,8 +137,9 @@ public class OopsPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				InitFrame.lessonMenu.setVisible(true);
+//				setVisible(false);
+//				InitFrame.lessonMenu.setVisible(true);
+				InitFrame.mainLayout.show(getParent(), "lessonMenu");
 			}
 		});	
 		

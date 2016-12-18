@@ -85,7 +85,8 @@ public class EndOfGamePanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				InitFrame.main.setVisible(true);
+//				InitFrame.main.setVisible(true);
+				InitFrame.mainLayout.show(getParent(), "main");
 			}
 		});	
 		

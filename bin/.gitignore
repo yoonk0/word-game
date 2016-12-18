@@ -1,4 +1,7 @@
-/views/
+/.DS_Store
 /dictionary/
-/src/
 /game/
+/helper/
+/tools/
+/useless/
+/views/

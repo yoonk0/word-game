@@ -8,7 +8,9 @@ import java.io.*;
 import javax.imageio.*;
 import javax.swing.*;
 
-public class InitFrame extends JFrame {
+import game.*;
+
+public class InitFrame extends JFrame{
 	public static CardLayout mainLayout;
 	public static MainMenu main; 
 	public static LessonMenu lessonMenu;
@@ -16,9 +18,9 @@ public class InitFrame extends JFrame {
 	public static int lessonNum; 
 	public static CongratulationsPanel congrats;
 	public static OopsPanel oops; 
-//	public static GamePanel game; 
-//	public static QuestionPanel question; 
-//	public static EndOfGamePanel end; 
+	public static GamePanel game; 
+	public static QuestionPanel question; 
+	public static EndOfGamePanel end; 
 
 	/**
 	 * Constructor for the class 
@@ -27,6 +29,7 @@ public class InitFrame extends JFrame {
 	public InitFrame() throws Exception{
 		initFrame();
 		addPanels();
+		this.addKeyListener(game);
 	}
 	
 	/**
@@ -60,18 +63,19 @@ public class InitFrame extends JFrame {
 		congrats = new CongratulationsPanel(image);	
 		image = ImageIO.read(new File("images/end/oops/oops.jpg"));
 		oops = new OopsPanel(image);
-//		game = new GamePanel(); 
-//		question = new QuestionPanel(); 
+		game = new GamePanel(); 
+		Thread t = new Thread(game);
+		t.start();
+		question = new QuestionPanel(); 
 //		image = ImageIO.read(new File("images/game/EndOfGame.jpg"));
-//		end = new EndOfGamePanel();
+		end = new EndOfGamePanel();
 		this.add(main, "main");
 		this.add(lessonMenu, "lessonMenu");
 		this.add(lesson, "lesson");
 		this.add(congrats, "congrats");
 		this.add(oops, "oops");
-//		this.add(game, "game");
-//		this.add(question, "question");
-//		this.add(end, "end");
+		this.add(game, "game");
+		this.add(question, "question");
+		this.add(end, "end");
 	}
-
 }

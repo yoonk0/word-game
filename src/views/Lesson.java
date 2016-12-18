@@ -230,8 +230,9 @@ public class Lesson extends JPanel {
 					prev.setVisible(true);
 					setWordAndImage(words.get(count));
 				}else if(count == words.size()){
-					setVisible(false);
-					InitFrame.congrats.setVisible(true);					
+//					setVisible(false);
+//					InitFrame.congrats.setVisible(true);
+					InitFrame.mainLayout.show(getParent(), "congrats");
 				}
 			}
 		});	

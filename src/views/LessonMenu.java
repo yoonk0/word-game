@@ -127,8 +127,9 @@ public class LessonMenu  extends JPanel{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				setVisible(false);
-				InitFrame.lesson.setVisible(true);
+//				setVisible(false);
+//				InitFrame.lesson.setVisible(true);
+				InitFrame.mainLayout.show(getParent(), "lesson");
 			}
 		});	
 		
@@ -143,8 +144,9 @@ public class LessonMenu  extends JPanel{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				setVisible(false);
-				InitFrame.lesson.setVisible(true);
+//				setVisible(false);
+//				InitFrame.lesson.setVisible(true);
+				InitFrame.mainLayout.show(getParent(), "lesson");
 			}
 		});	
 		
@@ -159,8 +161,9 @@ public class LessonMenu  extends JPanel{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				setVisible(false);
-				InitFrame.lesson.setVisible(true);
+//				setVisible(false);
+//				InitFrame.lesson.setVisible(true);
+				InitFrame.mainLayout.show(getParent(), "lesson");
 			}
 		});	
 		
@@ -175,8 +178,9 @@ public class LessonMenu  extends JPanel{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				setVisible(false);
-				InitFrame.lesson.setVisible(true);
+//				setVisible(false);
+//				InitFrame.lesson.setVisible(true);
+				InitFrame.mainLayout.show(getParent(), "lesson");
 			}
 		});	
 		
@@ -191,8 +195,9 @@ public class LessonMenu  extends JPanel{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				setVisible(false);
-				InitFrame.lesson.setVisible(true);
+//				setVisible(false);
+//				InitFrame.lesson.setVisible(true);
+				InitFrame.mainLayout.show(getParent(), "lesson");
 			}
 		});	
 		
@@ -200,8 +205,9 @@ public class LessonMenu  extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				InitFrame.main.setVisible(true);
+//				setVisible(false);
+//				InitFrame.main.setVisible(true);
+				InitFrame.mainLayout.show(getParent(), "main");
 			}
 		});	
 		

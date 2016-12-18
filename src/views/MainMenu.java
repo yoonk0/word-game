@@ -21,7 +21,7 @@ import tools.ReviewList;
  * @author YoonKim
  *
  */
-public class MainMenu extends JPanel {
+public class MainMenu extends JPanel{
 	JButton watchLessonsButton, playGamesButton, reviewButton, exitButton;
 	Image backgroundImage;
 	ReviewList reviewList; 
@@ -114,32 +114,35 @@ public class MainMenu extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				InitFrame.lessonMenu.setVisible(true);
+//				setVisible(false);
+//				InitFrame.lessonMenu.setVisible(true);
+				InitFrame.mainLayout.show(getParent(), "lessonMenu");
 			}
 		});	
 		
-//		playGamesButton.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
+		playGamesButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
 //				setVisible(false);
-//			}
-//		});	
+				InitFrame.mainLayout.show(getParent(), "game");
+			}
+		});	
 		
 		
 		reviewButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
+//				setVisible(false);
 				try {
 					reviewList = new ReviewList("wordLists/reviewlist.txt");
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				} 
 				if (reviewList.getList().isEmpty()) {
-					InitFrame.oops.setVisible(true);			//if reviewList is empty show oops page
+//					InitFrame.oops.setVisible(true);			//if reviewList is empty show oops page
+					InitFrame.mainLayout.show(getParent(), "oops");
 				}else {
 					Lesson.lessonNum = 0;			//set lesson number to 0 
 					try {
@@ -147,7 +150,8 @@ public class MainMenu extends JPanel {
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
-					InitFrame.lesson.setVisible(true);
+//					InitFrame.lesson.setVisible(true);
+					InitFrame.mainLayout.show(getParent(), "lesson");
 				}
 			}
 		});	
@@ -163,6 +167,4 @@ public class MainMenu extends JPanel {
 		});	
 		
 	}
-
-	
 }

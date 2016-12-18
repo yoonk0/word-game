@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import dictionary.XMLRequest;
+import views.InitFrame;
 
 /**
  * This class implements the page where a question pop up and prompts the user to answer
@@ -117,16 +118,20 @@ public class QuestionPanel extends JPanel{
 					GamePanel.scores += 200; 
 					GamePanel.correctCount++;
 					if (GamePanel.wordCount == 10) {				//after 10 words game ends
-						Game.layout.show(getParent(), "congratulation page");
+//						Game.layout.show(getParent(), "end");
+						InitFrame.mainLayout.show(getParent(), "end");
 					} else {
-					Game.layout.show(getParent(), "game panel");
+//					Game.layout.show(getParent(), "game");
+						InitFrame.mainLayout.show(getParent(), "game");
 					}
 				} else {
 					JOptionPane.showMessageDialog(getParent(), "Wrong Answer :( ", "A plain message", JOptionPane.PLAIN_MESSAGE);
 					if (GamePanel.wordCount == 10) {
-						Game.layout.show(getParent(), "congratulation page");
+//						Game.layout.show(getParent(), "end");
+						InitFrame.mainLayout.show(getParent(), "end");
 					} else {
-					Game.layout.show(getParent(), "game panel");
+//					Game.layout.show(getParent(), "game");
+						InitFrame.mainLayout.show(getParent(), "game");
 					}
 				}
 				userInput.setText("");

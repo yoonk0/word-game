@@ -106,8 +106,9 @@ public class CongratulationsPanel extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
+//				setVisible(false);
 				//InitFrame.game.setVisible(true);
+				InitFrame.mainLayout.show(getParent(), "game");
 			}
 		});	
 		
@@ -116,14 +117,15 @@ public class CongratulationsPanel extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
+//				setVisible(false);
 				try {
 					reviewList = new ReviewList("wordLists/reviewlist.txt");
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				} 
 				if (reviewList.getList().isEmpty()) {
-					InitFrame.oops.setVisible(true);
+//					InitFrame.oops.setVisible(true);
+					InitFrame.mainLayout.show(getParent(), "oops");
 				}else {
 					Lesson.lessonNum = 0;				//set lesson number
 					try {
@@ -132,7 +134,8 @@ public class CongratulationsPanel extends JPanel{
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					InitFrame.lesson.setVisible(true);
+//					InitFrame.lesson.setVisible(true);
+					InitFrame.mainLayout.show(getParent(), "lesson");
 				}
 			}
 		});	
@@ -141,8 +144,9 @@ public class CongratulationsPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				InitFrame.main.setVisible(true);
+//				setVisible(false);
+//				InitFrame.main.setVisible(true);
+				InitFrame.mainLayout.show(getParent(), "main");
 			}
 		});	
 		
@@ -150,7 +154,7 @@ public class CongratulationsPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
+//				setVisible(false);
 				Lesson.lessonNum += 1;					//set lesson number
 				try {
 					Lesson.initLabels();				//initialize labels again 
@@ -158,7 +162,8 @@ public class CongratulationsPanel extends JPanel{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				InitFrame.lesson.setVisible(true);
+//				InitFrame.lesson.setVisible(true);
+				InitFrame.mainLayout.show(getParent(), "lesson");
 			}
 		});	
 		

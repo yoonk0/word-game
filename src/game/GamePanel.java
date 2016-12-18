@@ -26,6 +26,8 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import views.InitFrame;
+
 
 public class GamePanel extends JPanel implements KeyListener, Runnable, MouseListener{
 	Car car = null;
@@ -171,7 +173,8 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				Game.layout.show(getParent(), "question panel");
+//				Game.layout.show(getParent(), "question");
+				InitFrame.mainLayout.show(getParent(), "question");
 				wordCount++; 
 				obstacle = new Obstacle(width);
 				Thread obsT = new Thread(obstacle);
