@@ -1,7 +1,7 @@
 package game;
 
 /**
-*
+* Cloud class which describes the location, size of a cloud
 * @author Wen Zhong
 */
 
@@ -11,10 +11,17 @@ import java.awt.event.*;
 import java.util.*;
 
 public class Cloud extends Element implements Runnable{
+	
+	/**
+	 * constructor
+	 */
 	public Cloud(){
 		super();
 	}
 
+	/**
+	 * change the location of cloud
+	 */
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub

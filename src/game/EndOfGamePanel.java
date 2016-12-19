@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import views.InitFrame;
+import views.LaunchBoard;
 
 /**
  * This class represents the end of game page that displays final score 
@@ -84,9 +85,7 @@ public class EndOfGamePanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-//				InitFrame.main.setVisible(true);
-				InitFrame.mainLayout.show(getParent(), "main");
+				LaunchBoard.initFrame.setVisible(true);
 			}
 		});	
 		

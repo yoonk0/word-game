@@ -1,7 +1,7 @@
 package game;
 
 /**
-*
+* This class describes the location and size of a plant
 * @author Wen Zhong
 */
 import java.awt.*;
@@ -22,6 +22,10 @@ public class Plant extends Element implements Runnable{
 		sizeHeight = (int)(image.getIconHeight() * 0.2);
 	}
 
+	/**
+	 * getters and setters
+	 * @return
+	 */
 	public boolean isLive() {
 		return isLive;
 	}

@@ -3,7 +3,7 @@ package game;
 import java.io.IOException;
 
 /**
-*
+* Test class for car game
 * @author Wen Zhong
 */
 

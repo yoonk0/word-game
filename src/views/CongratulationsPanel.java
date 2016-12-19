@@ -6,11 +6,12 @@ import java.io.*;
 import javax.imageio.*;
 import javax.swing.*;
 
+import game.Game;
 import tools.ReviewList;
 
 /**
  * This class represents the congratulations page at the end of each lesson
- * @author YoonKim
+ * @author YoonKim, Wen Zhong
  *
  */
 public class CongratulationsPanel extends JPanel{
@@ -28,7 +29,6 @@ public class CongratulationsPanel extends JPanel{
 		initButtons();
 		mouseControl();
 		setLayout(null);
-		this.addKeyListener(InitFrame.game);
 	}
 
 	/**
@@ -106,10 +106,12 @@ public class CongratulationsPanel extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
-				//InitFrame.game.setVisible(true);
-				InitFrame.mainLayout.show(getParent(), "game");
-				InitFrame.t.resume();
+				try {
+					Game game = new Game();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				LaunchBoard.initFrame.setVisible(false);
 			}
 		});	
 		
@@ -118,24 +120,20 @@ public class CongratulationsPanel extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
 				try {
 					reviewList = new ReviewList("wordLists/reviewlist.txt");
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				} 
 				if (reviewList.getList().isEmpty()) {
-//					InitFrame.oops.setVisible(true);
 					InitFrame.mainLayout.show(getParent(), "oops");
 				}else {
 					Lesson.lessonNum = 0;				//set lesson number
 					try {
 						Lesson.initLabels();			//initialize labels again
 					} catch (Exception e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-//					InitFrame.lesson.setVisible(true);
 					InitFrame.mainLayout.show(getParent(), "lesson");
 				}
 			}
@@ -145,8 +143,6 @@ public class CongratulationsPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
-//				InitFrame.main.setVisible(true);
 				InitFrame.mainLayout.show(getParent(), "main");
 			}
 		});	
@@ -155,15 +151,12 @@ public class CongratulationsPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
 				Lesson.lessonNum += 1;					//set lesson number
 				try {
 					Lesson.initLabels();				//initialize labels again 
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-//				InitFrame.lesson.setVisible(true);
 				InitFrame.mainLayout.show(getParent(), "lesson");
 			}
 		});	

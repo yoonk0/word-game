@@ -118,36 +118,38 @@ public class QuestionPanel extends JPanel{
 					GamePanel.scores += 200; 
 					GamePanel.correctCount++;
 					if (GamePanel.wordCount == 10) {				//after 10 words game ends
-//						Game.layout.show(getParent(), "end");
-						InitFrame.mainLayout.show(getParent(), "end");
+						Game.layout.show(getParent(), "end");
+//						InitFrame.mainLayout.show(getParent(), "end");
 					} else {
 //					Game.layout.show(getParent(), "game");
 						GamePanel.carT.resume();
 						
-						for(int i = 0; i < GamePanel.money1T.size(); i++)
-							GamePanel.money1T.get(i).resume();
+//						for(int i = 0; i < GamePanel.money1T.size(); i++)
+//							GamePanel.money1T.get(i).resume();
+//						
+//						for(int i = 0; i < GamePanel.money2T.size(); i++)
+//							GamePanel.money2T.get(i).resume();
 						
-						for(int i = 0; i < GamePanel.money2T.size(); i++)
-							GamePanel.money2T.get(i).resume();
-						
-						InitFrame.mainLayout.show(getParent(), "game");
+//						InitFrame.mainLayout.show(getParent(), "game");
+						Game.layout.show(getParent(), "game panel");
 					}
 				} else {
 					JOptionPane.showMessageDialog(getParent(), "Wrong Answer :( ", "A plain message", JOptionPane.PLAIN_MESSAGE);
 					if (GamePanel.wordCount == 10) {
-//						Game.layout.show(getParent(), "end");
-						InitFrame.mainLayout.show(getParent(), "end");
+						Game.layout.show(getParent(), "end");
+//						InitFrame.mainLayout.show(getParent(), "end");
 					} else {
 //					Game.layout.show(getParent(), "game");
 						GamePanel.carT.resume();
 						
-						for(int i = 0; i < GamePanel.money1T.size(); i++)
-							GamePanel.money1T.get(i).resume();
+//						for(int i = 0; i < GamePanel.money1T.size(); i++)
+//							GamePanel.money1T.get(i).resume();
+//						
+//						for(int i = 0; i < GamePanel.money2T.size(); i++)
+//							GamePanel.money2T.get(i).resume();
 						
-						for(int i = 0; i < GamePanel.money2T.size(); i++)
-							GamePanel.money2T.get(i).resume();
-						
-						InitFrame.mainLayout.show(getParent(), "game");
+//						InitFrame.mainLayout.show(getParent(), "game");
+						Game.layout.show(getParent(), "game panel");
 					}
 				}
 				userInput.setText("");

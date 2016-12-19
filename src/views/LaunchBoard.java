@@ -1,13 +1,14 @@
 package views;
 
+
 /**
  * This is the class to launch the program 
- * @author YoonKim
+ * @author YoonKim, Wen Zhong
  *
  */
 
 public class LaunchBoard {
-	InitFrame initFrame;
+	public static InitFrame initFrame;
 	
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
@@ -16,6 +17,5 @@ public class LaunchBoard {
 
 	public LaunchBoard() throws Exception{
 		initFrame = new InitFrame();
-
 	}
 }

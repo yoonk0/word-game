@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 
 /**
  * This class represents the lesson menu
- * @author YoonKim
+ * @author YoonKim, Wen Zhong
  *
  */
 public class LessonMenu  extends JPanel{
@@ -35,7 +35,6 @@ public class LessonMenu  extends JPanel{
 		initButtons();
 		mouseControl();
 		setLayout(null);
-		this.addKeyListener(InitFrame.game);
 	}
 	
 	/**
@@ -125,11 +124,8 @@ public class LessonMenu  extends JPanel{
 				try {
 					Lesson.initLabels();
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-//				setVisible(false);
-//				InitFrame.lesson.setVisible(true);
 				InitFrame.mainLayout.show(getParent(), "lesson");
 			}
 		});	
@@ -142,11 +138,8 @@ public class LessonMenu  extends JPanel{
 				try {
 					Lesson.initLabels();
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-//				setVisible(false);
-//				InitFrame.lesson.setVisible(true);
 				InitFrame.mainLayout.show(getParent(), "lesson");
 			}
 		});	
@@ -159,11 +152,8 @@ public class LessonMenu  extends JPanel{
 				try {
 					Lesson.initLabels();
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-//				setVisible(false);
-//				InitFrame.lesson.setVisible(true);
 				InitFrame.mainLayout.show(getParent(), "lesson");
 			}
 		});	
@@ -176,11 +166,9 @@ public class LessonMenu  extends JPanel{
 				try {
 					Lesson.initLabels();
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-//				setVisible(false);
-//				InitFrame.lesson.setVisible(true);
+
 				InitFrame.mainLayout.show(getParent(), "lesson");
 			}
 		});	
@@ -193,11 +181,9 @@ public class LessonMenu  extends JPanel{
 				try {
 					Lesson.initLabels();
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-//				setVisible(false);
-//				InitFrame.lesson.setVisible(true);
+				
 				InitFrame.mainLayout.show(getParent(), "lesson");
 			}
 		});	
@@ -206,8 +192,6 @@ public class LessonMenu  extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
-//				InitFrame.main.setVisible(true);
 				InitFrame.mainLayout.show(getParent(), "main");
 			}
 		});	

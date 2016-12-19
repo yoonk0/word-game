@@ -12,6 +12,9 @@ import java.util.*;
 public class House extends Element implements Runnable{
 	boolean isLive;
 	
+	/**
+	 * constructor
+	 */
 	public House(){
 		super();
 		
@@ -28,10 +31,18 @@ public class House extends Element implements Runnable{
 		sizeWidth = (int)(image.getIconWidth() * 0.4);
 	}
 	
+	/**
+	 * get method for isLive
+	 * @return isLive
+	 */
 	public boolean isLive() {
 		return isLive;
 	}
 
+	/**
+	 * set method for isLive
+	 * @param isLive
+	 */
 	public void setLive(boolean isLive) {
 		this.isLive = isLive;
 	}

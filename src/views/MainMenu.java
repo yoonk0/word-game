@@ -14,11 +14,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import game.Game;
 import tools.ReviewList;
 
 /**
  * This class represents the main menu page for the program
- * @author YoonKim
+ * @author YoonKim, Wen Zhong
  *
  */
 public class MainMenu extends JPanel{
@@ -37,7 +38,6 @@ public class MainMenu extends JPanel{
 		initButtons();
 		mouseControl();
 		setLayout(null);
-		this.addKeyListener(InitFrame.game);
 	}
 	
 
@@ -115,8 +115,6 @@ public class MainMenu extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
-//				InitFrame.lessonMenu.setVisible(true);
 				InitFrame.mainLayout.show(getParent(), "lessonMenu");
 			}
 		});	
@@ -125,9 +123,14 @@ public class MainMenu extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
-				InitFrame.mainLayout.show(getParent(), "game");
-				InitFrame.t.resume();
+				Game game = null;
+				try {
+					game = new Game();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				game.setVisible(true);
+				LaunchBoard.initFrame.setVisible(false);
 			}
 		});	
 		
@@ -136,14 +139,13 @@ public class MainMenu extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
 				try {
 					reviewList = new ReviewList("wordLists/reviewlist.txt");
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				} 
 				if (reviewList.getList().isEmpty()) {
-//					InitFrame.oops.setVisible(true);			//if reviewList is empty show oops page
+					//if reviewList is empty show oops page
 					InitFrame.mainLayout.show(getParent(), "oops");
 				}else {
 					Lesson.lessonNum = 0;			//set lesson number to 0 
@@ -152,7 +154,6 @@ public class MainMenu extends JPanel{
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
-//					InitFrame.lesson.setVisible(true);
 					InitFrame.mainLayout.show(getParent(), "lesson");
 				}
 			}

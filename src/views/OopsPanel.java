@@ -16,9 +16,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import game.Game;
+
 /**
  * This class represents the page when review list is called but there are no words in the review list
- * @author YoonKim
+ * @author YoonKim, Wen Zhong
  *
  */
 public class OopsPanel extends JPanel{
@@ -36,7 +38,6 @@ public class OopsPanel extends JPanel{
 		initLabelsAndButtons();
 		mouseControl();
 		setLayout(null);
-		this.addKeyListener(InitFrame.game);
 	}
 	
 	
@@ -49,29 +50,21 @@ public class OopsPanel extends JPanel{
 		int w = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
 		Image image;
-
-//		text = new JLabel("Oops, there are no words in the review list yet!");
-//		add(text);
-//		text.setBounds(450, 250, 800, 100);
-//		text.setFont(new Font("calibri", Font.PLAIN, 24));
 		
 		image = getImage("homepage");
 		homePage = new JButton(new ImageIcon(image));
 		setButton(homePage);
-		//homePage.setBounds(530, 370, 250, 80);
 		homePage.setBounds((int) (w*0.21), (int)(h*0.32), (int) (w*0.3), (int) (h*0.08));
 		
 		
 		image = getImage("playGames");
 		playGame = new JButton(new ImageIcon(image));
 		setButton(playGame);
-		//playGame.setBounds(530, 470, 250, 80);
 		playGame.setBounds((int) (w*0.21), (int)(h*0.42), (int) (w*0.3), (int) (h*0.08));
 		
 		image = getImage("watchLessons");
 		lessonMenu = new JButton(new ImageIcon(image));
 		setButton(lessonMenu);
-		//lessonMenu.setBounds(530, 570, 250, 80);
 		lessonMenu.setBounds((int) (w*0.21), (int)(h*0.52), (int) (w*0.3), (int) (h*0.08));
 		
 	}
@@ -118,10 +111,12 @@ public class OopsPanel extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
-				//InitFrame.game.setVisible(true);
-				InitFrame.mainLayout.show(getParent(), "game");
-				InitFrame.t.resume();
+				try {
+					Game game = new Game();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				LaunchBoard.initFrame.setVisible(false);
 			}
 		});	
 		
@@ -129,8 +124,6 @@ public class OopsPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
-//				InitFrame.main.setVisible(true);
 				InitFrame.mainLayout.show(getParent(), "main");
 			}
 		});	
@@ -139,8 +132,6 @@ public class OopsPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
-//				InitFrame.lessonMenu.setVisible(true);
 				InitFrame.mainLayout.show(getParent(), "lessonMenu");
 			}
 		});	

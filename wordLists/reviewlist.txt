@@ -1,4 +1,0 @@
-musician
-doctor
-programmer
-baker

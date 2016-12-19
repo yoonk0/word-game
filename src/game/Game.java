@@ -1,7 +1,7 @@
 package game;
 
 /**
-*
+* This is a test class for car game
 * @author Wen Zhong
 */
 import java.awt.*;
@@ -28,6 +28,10 @@ public class Game extends JFrame{
 		}
 	}
 	
+	/**
+	 * constructor
+	 * @throws IOException
+	 */
 	public Game() throws IOException{
 		layout = new CardLayout();
 		this.setLayout(layout);
@@ -36,16 +40,13 @@ public class Game extends JFrame{
 		t.start();
 		qPanel = new QuestionPanel();
 		try {
-//			Image im = (new ImageIcon("images/lessonfinished.jpg")).getImage();
-//			Image im = ImageIO.read(new File("./images/lessonfinished.jpg"));
 			cPanel = new EndOfGamePanel();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		this.add(panel, "game panel");
 		this.add(qPanel, "question panel");
-		this.add(cPanel, "congratulation page");
+		this.add(cPanel, "end");
 		this.addKeyListener(panel);
 		int width = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int height = Toolkit.getDefaultToolkit().getScreenSize().height;

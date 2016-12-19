@@ -1,7 +1,7 @@
 package game;
 
 /**
-*
+* This class describes the location and size of sun
 * @author Wen Zhong
 */
 import java.awt.*;
@@ -22,6 +22,9 @@ public class Sun implements Runnable{
 	int sizeWidth;
 	int sizeHeight;
 	
+	/**
+	 * constructor
+	 */
 	public Sun(){
 		width = Toolkit.getDefaultToolkit().getScreenSize().width;
 		height = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -65,7 +68,10 @@ public class Sun implements Runnable{
 		}
 	}
 
-
+	/**
+	 * getters and setters
+	 * @return
+	 */
 	public int getX() {
 		return x;
 	}

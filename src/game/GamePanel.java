@@ -50,9 +50,9 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 	
 	
 	ArrayList<Money> money1 = null;
-	public static ArrayList<Thread> money1T = null;
+//	public static ArrayList<Thread> money1T = null;
 	ArrayList<Money> money2 = null;
-	public static ArrayList<Thread> money2T = null;
+//	public static ArrayList<Thread> money2T = null;
 	int numOfMoney1;
 	int numOfMoney2;
 	
@@ -69,6 +69,10 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 	// count the number that questions answered correctly (game ends when the user answers 10 correctly)
 	static int correctCount;
 	
+	/**
+	 * constructor
+	 * @throws IOException
+	 */
 	public GamePanel() throws IOException {
 		width = Toolkit.getDefaultToolkit().getScreenSize().width;
 		height = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -84,9 +88,9 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 		clouds = new ArrayList<>();
 		houses = new ArrayList<>();
 		money1 = new ArrayList<>();
-		money1T = new ArrayList<>();
+//		money1T = new ArrayList<>();
 		money2 = new ArrayList<>();
-		money2T = new ArrayList<>();
+//		money2T = new ArrayList<>();
 		sun = new Sun();
 		sunT = new Thread(sun);
 		sunT.start();
@@ -109,6 +113,8 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 		
 		// obstacles
 		obstacle = new Obstacle((int)(width * 0.5));
+//		obstacle = new Obstacle(0);
+//		obstacle.setY((int)(height * 0.65));
 		Thread obsT = new Thread(obstacle);
 		obsT.start();
 		
@@ -135,7 +141,7 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 			Money tmp = new Money(tempx, tempy);
 			money1.add(tmp);
 			Thread t = new Thread(tmp);
-			money1T.add(t);
+//			money1T.add(t);
 			t.start();
 		}
 				
@@ -145,13 +151,17 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 			Money tmp = new Money(tempx, tempy);
 			money2.add(tmp);
 			Thread t = new Thread(tmp);
-			money2T.add(t);
+//			money2T.add(t);
 			t.start();
 		}
 		
 	
 	}
 	
+	/**
+	 * set word list for the game
+	 * @throws IOException
+	 */
 	private void setWordList() throws IOException {
 		String wordSrc = "wordLists/lesson"+lessonNum+".txt";
 		words = new ArrayList<>();
@@ -167,6 +177,9 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 		}
 	}
 	
+	/**
+	 * paint the whole panel
+	 */
 	public void paint(Graphics g){
 		try {
 			Image image = ImageIO.read(new File("images/game/gameBackground.jpeg"));
@@ -185,13 +198,14 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 				sunT.suspend();
 				carT.suspend();
 				
-				for(int i = 0; i < money1T.size(); i++)
-					money1T.get(i).suspend();
+//				for(int i = 0; i < money1T.size(); i++)
+//					money1T.get(i).suspend();
 				
-				for(int i = 0; i < money2T.size(); i++)
-					money2T.get(i).suspend();
+//				for(int i = 0; i < money2T.size(); i++)
+//					money2T.get(i).suspend();
 				
-				InitFrame.mainLayout.show(getParent(), "question");
+//				InitFrame.mainLayout.show(getParent(), "question");
+				Game.layout.show(getParent(), "question panel");
 				wordCount++; 
 				obstacle = new Obstacle(width);
 				Thread obsT = new Thread(obstacle);
@@ -297,14 +311,14 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 			Money tmp = money1.get(i);
 			if(!tmp.isLive()){
 				money1.remove(i);
-				money1T.remove(i);
+//				money1T.remove(i);
 				int tempx = (int)(car.getX() + car.getSizeWidth() + (obstacle.getX() - car.sizeWidth - car.getX()) * Math.random());
 				int tempy = (int)(height * (0.65 + Math.random() * 0.18));
 				Money newm = new Money(tempx, tempy);
 				newm.setX(width + 166);
 				money1.add(newm);
 				Thread t = new Thread(newm);
-				money1T.add(t);
+//				money1T.add(t);
 				t.start();
 			}
 		}
@@ -313,14 +327,13 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 			Money tmp = money2.get(i);
 			if(!tmp.isLive()){
 				money2.remove(i);
-				money2.remove(i);
 				int tempx = (int)(obstacle.getX() + obstacle.getSizeWidth() + (width - obstacle.getX() + obstacle.getSizeWidth()) * Math.random());
 				int tempy = (int)(height * (0.65 + Math.random() * 0.18));
 				Money newm = new Money(tempx, tempy);
 				newm.setX(width + 166);
 				money2.add(newm);
 				Thread t = new Thread(newm);
-				money2T.add(t);
+//				money2T.add(t);
 				t.start();
 			}
 		}
@@ -333,6 +346,8 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+//		System.out.println("test");
+		
 		switch(e.getKeyCode()){
 		case KeyEvent.VK_UP:
 			car.setSpeed(10);
@@ -375,6 +390,10 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 		this.repaint();
 	}
 	
+	/**
+	 * whether the car and the obstacle hit or not
+	 * @return
+	 */
 	public boolean isHit(){
 		if(car.getX() + car.getSizeWidth() >= obstacle.getX()
 				&& car.getX() <= obstacle.getX() + obstacle.getSizeWidth()
@@ -384,6 +403,11 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 		return false;
 	}
 
+	/**
+	 * whether the car hit money
+	 * @param m
+	 * @return true: hit false: not hit
+	 */
 	public boolean hitMoney(Money m){
 		if(car.getX() + car.getSizeWidth() >= m.getX() && m.isLive()
 				&& ((car.getY() <= m.getY() && car.getY() + car.getSizeHeight() >= m.getY()) 

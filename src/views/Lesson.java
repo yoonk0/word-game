@@ -17,7 +17,7 @@ import tools.*;
  * Lesson panel with word, play button, and image displayed
  * Appropriate list of words are pulled up from the set lesson number ( review list is lesson 0 )
  * Extends JPanel and is included in the InitFrame
- * @author YoonKim
+ * @author YoonKim, Wen Zhong
  *
  */
 public class Lesson extends JPanel {
@@ -47,7 +47,6 @@ public class Lesson extends JPanel {
 		mouseControl();
 		setLayout(null);
 		review = new ReviewList("wordLists/reviewlist.txt");
-		this.addKeyListener(InitFrame.game);
 	}
 	
 	/**

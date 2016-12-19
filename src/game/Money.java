@@ -1,7 +1,7 @@
 package game;
 
 /**
-*
+* This class describes the location of money and their size
 * @author Wen Zhong
 */
 import java.awt.*;
@@ -16,6 +16,11 @@ public class Money extends Element implements Runnable{
 	boolean flag;
 	boolean isLive;
 	
+	/**
+	 * constructor
+	 * @param x
+	 * @param y
+	 */
 	public Money(int x, int y){
 		super(x, y);
 		
@@ -52,6 +57,10 @@ public class Money extends Element implements Runnable{
 		}
 	}
 
+	/**
+	 * getters and setters
+	 * @return
+	 */
 	public float getOpacity() {
 		return opacity;
 	}

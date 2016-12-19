@@ -1,7 +1,7 @@
 package game;
 
 /**
-*
+* This class describes the location and size of an obstacle
 * @author Wen Zhong
 */
 import java.awt.*;
@@ -11,14 +11,18 @@ import java.util.*;
 
 public class Obstacle extends Element implements Runnable{
 	
+	/**
+	 * constructor
+	 * @param x
+	 */
 	public Obstacle(int x){
 		super(x);
 	}
 
-	public void showQuestion(Graphics2D g2) {
-		// TODO Auto-generated method stub
-		g2.drawString("Hello, there should be a question", 5, height - 100);
-	}
+//	public void showQuestion(Graphics2D g2) {
+//		// TODO Auto-generated method stub
+//		g2.drawString("Hello, there should be a question", 5, height - 100);
+//	}
 
 	@Override
 	public void run() {

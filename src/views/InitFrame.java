@@ -1,14 +1,13 @@
 package views;
 /**
  * Main frame that contains all panels, mainMenu, lessonMenu, lesson, congrats, oops, game, question, and end
+ * @author zhongwen
  */
 
 import java.awt.*;
 import java.io.*;
 import javax.imageio.*;
 import javax.swing.*;
-
-import game.*;
 
 public class InitFrame extends JFrame{
 	public static CardLayout mainLayout;
@@ -18,10 +17,6 @@ public class InitFrame extends JFrame{
 	public static int lessonNum; 
 	public static CongratulationsPanel congrats;
 	public static OopsPanel oops; 
-	public static GamePanel game; 
-	public static QuestionPanel question; 
-	public static EndOfGamePanel end;
-	public static Thread t = null;
 
 	/**
 	 * Constructor for the class 
@@ -30,7 +25,6 @@ public class InitFrame extends JFrame{
 	public InitFrame() throws Exception{
 		initFrame();
 		addPanels();
-//		this.addKeyListener(game);
 	}
 	
 	/**
@@ -64,21 +58,10 @@ public class InitFrame extends JFrame{
 		congrats = new CongratulationsPanel(image);	
 		image = ImageIO.read(new File("images/end/oops/oops.jpg"));
 		oops = new OopsPanel(image);
-		game = new GamePanel();
-		this.addKeyListener(game);
-		t = new Thread(InitFrame.game);
-		t.start();
-		t.suspend();
-		question = new QuestionPanel(); 
-//		image = ImageIO.read(new File("images/game/EndOfGame.jpg"));
-		end = new EndOfGamePanel();
 		this.add(main, "main");
 		this.add(lessonMenu, "lessonMenu");
 		this.add(lesson, "lesson");
 		this.add(congrats, "congrats");
 		this.add(oops, "oops");
-		this.add(game, "game");
-		this.add(question, "question");
-		this.add(end, "end");
 	}
 }
