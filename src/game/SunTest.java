@@ -50,8 +50,10 @@ public class SunTest {
 		     assertNotSame("should not be same Object",s, s2);
 			
 		}
+	
+	
 	@Test
-	public void testtwoSunSame() 
+	public void testSunSetXSame() 
 	{
 		Sun s = new Sun(); 
 		Sun s2 = new Sun();
@@ -59,7 +61,7 @@ public class SunTest {
 		  s2.setX(2);
 		 int s_X= s.getX();
 		 int s2_X= s2.getX();
-		 assertSame("should be same", s_X, s2_X); 
+		 assertSame("set x for two sun equally should be same", s_X, s2_X); 
 		 
 		
 	}

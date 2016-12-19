@@ -43,9 +43,9 @@ private FrameFixture ls;
 	}
 	
 	@Test
-	public void testLessonMenuNotNull() {
+	public void testCongradulationNotNull() {
 		
-	  assertNotNull("LessonMenu creation cannot be null", ls);
+	  assertNotNull("CongradulationPanel creation cannot be null", ls);
 	}
 }
 

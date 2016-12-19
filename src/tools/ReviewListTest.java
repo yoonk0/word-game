@@ -45,8 +45,6 @@ public class ReviewListTest {
 		expected.add("yes");
 		actual = rl.getList();
 		
-//		System.out.println(expected);
-//		System.out.println(rl.getList());
 		
 		assertEquals("test the addElement() method in reviewList", expected, actual);
 		
@@ -64,8 +62,7 @@ public class ReviewListTest {
 		expected.remove("yes");
 		actual = rl.getList();
 		
-//		System.out.println(expected);
-//		System.out.println(rl.getList());
+
 		
 		assertEquals("test the deleteElement() method in reviewList", expected, actual);
 		
@@ -77,8 +74,7 @@ public class ReviewListTest {
 //		expected = new ArrayList<>()
 		actual = rl.getList();
 		expected.add("yes");
-//		System.out.println(expected);
-//		System.out.println(rl.getList());
+
 		
 		assertEquals("test the getList() method in reviewList", expected, actual);
 		
@@ -86,7 +82,7 @@ public class ReviewListTest {
 //			assertEquals("test the getList() method in reviewList", expected.get(i), actual.get(i));
 //		}
 		
-//		System.out.println(actual.get(0));
+
 //		assertEquals("test the getList() method in reviewList", "Arm", actual.get(0));
 		
 	}	
