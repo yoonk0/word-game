@@ -63,7 +63,7 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 	int height;
 	
 	//for questions panel; 
-	public static int lessonNum = 4;				//can be set from other classes 
+	public static int lessonNum = 1;				//can be set from other classes 
 	static int wordCount = 0;   //current word count
 	static ArrayList<String> words; 
 	// count the number that questions answered correctly (game ends when the user answers 10 correctly)
@@ -162,7 +162,7 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 	 * set word list for the game
 	 * @throws IOException
 	 */
-	private void setWordList() throws IOException {
+	public static void setWordList() throws IOException {
 		String wordSrc = "wordLists/lesson"+lessonNum+".txt";
 		words = new ArrayList<>();
 		FileReader f = new FileReader(wordSrc);
@@ -503,5 +503,12 @@ public class GamePanel extends JPanel implements KeyListener, Runnable, MouseLis
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	public static void setLessonNum(int lessonNum) {
+		GamePanel.lessonNum = lessonNum;
+	}
+	
+	
 
 }

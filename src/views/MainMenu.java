@@ -123,14 +123,7 @@ public class MainMenu extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Game game = null;
-				try {
-					game = new Game();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-				game.setVisible(true);
-				LaunchBoard.initFrame.setVisible(false);
+				InitFrame.mainLayout.show(getParent(), "gameMenu");
 			}
 		});	
 		

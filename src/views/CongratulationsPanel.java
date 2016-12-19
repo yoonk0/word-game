@@ -106,12 +106,7 @@ public class CongratulationsPanel extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {
-					Game game = new Game();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-				LaunchBoard.initFrame.setVisible(false);
+				InitFrame.mainLayout.show(getParent(), "gameMenu");
 			}
 		});	
 		

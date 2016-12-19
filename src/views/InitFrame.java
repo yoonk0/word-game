@@ -17,6 +17,7 @@ public class InitFrame extends JFrame{
 	public static int lessonNum; 
 	public static CongratulationsPanel congrats;
 	public static OopsPanel oops; 
+	public static GameMenuPanel gameMenu;
 
 	/**
 	 * Constructor for the class 
@@ -52,6 +53,7 @@ public class InitFrame extends JFrame{
 		main= new MainMenu(image);
 		image = ImageIO.read(new File("images/dash/dashwith.jpg"));
 		lessonMenu = new LessonMenu(image);
+		gameMenu = new GameMenuPanel(image);
 		image = ImageIO.read(new File("images/card/lesson/cardwith.jpg"));
 		lesson = new Lesson(image);
 		image = ImageIO.read(new File("images/end/finishLesson/lessonfinished.jpg"));
@@ -63,5 +65,6 @@ public class InitFrame extends JFrame{
 		this.add(lesson, "lesson");
 		this.add(congrats, "congrats");
 		this.add(oops, "oops");
+		this.add(gameMenu, "gameMenu");
 	}
 }
