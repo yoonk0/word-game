@@ -20,7 +20,7 @@ import game.Game;
 
 /**
  * This class represents the page when review list is called but there are no words in the review list
- * @author YoonKim, Wen Zhong
+ * @author YoonKim, Wen Zhong, Lingpei Zhou
  *
  */
 public class OopsPanel extends JPanel{
