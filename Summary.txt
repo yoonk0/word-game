@@ -1,0 +1,31 @@
+﻿Summary 
+Project Introduction
+The project is intended to help the kids under 12 to remember the vocabulary needed for school and daily life. The user chooses the lessons to learn, each with 20 words of specific topic. He/She can also add the words to the review list and delete them out after the review. Every word is stored in a learning card form, including the image and pronunciation audio of the word. It is also an entertaining program that the kids can play the word game. The user can instruct the car’s movement to collect the coins and will be stopped by the obstacles on road, which will post word questions for the user. He/She can get the points if he/she answers the questions correctly. It is a kid-friendly learning tool involving both learning and playing.
+
+
+Team
+Our team has worked collaboratively with clear work breakdown, special thanks for Wen who constructed the framework and coded for the game , for Yoon who cleared the API and implemented the panels, for Lingpei who did the interfacial design and the unit testing. Our work specifically breaks as follow:
+
+
+Wen Zhong:
+- Set up the whole frame for the project, including review, lessons, game and major menus;
+- Use Java Swing to implement the GUI of the program;
+- Implement the “Play game” part of the program: the operation of game, including the movement of car and obstacles; debugged the game and improve the implementation；
+- Coded all the classes in tools package for program; Art design mainly for “Play game”.
+
+
+Yoon Kim:
+- Implemented the GUI for the program along with Wen, mostly in lesson part of the program
+- Created classes in the dictionary package to use the Merriam - Webster dictionary API and implemented key functions in the lesson part of the game, such as playing the audio, getting the word list for the lesson, as well as adding and removing words from the review list 
+- Implemented the QuestionsPanel and EndOfGamePanel in the game part of the program, pulling data from api request and setting selected word list for the game
+- Worked on graphics for the game 
+
+
+Lingpei Zhou:
+- Designed the program along teammates and prepared the images and wordlists for the whole program, organized docs;
+- Did the unit testing for the program, including packages of game, tools and view. There are over 30 test cases on 13 classes, involved with different kinds of assertions.
+- Created the program interfaces and did the artwork for the panels of lessons, game, review.
+- Implemented and organized the ending menus for review list and lessons, OopsPanel.
+
+
+Link to GitHub: https://github.com/cit-upenn/cit-591-projects-fall-2016-word_game.git
